@@ -24,7 +24,6 @@ T[0,:]=T[-1,:]=T[:,0]=T[:,-1]=0
 
 # On ouvre le fichier pour écrire tous les résultats
 f_all = open("results.txt","w")
-f_all.write("# t i j x y T\n")  # en-tête
 
 # boucle temporelle
 for n in range(Nt+1):

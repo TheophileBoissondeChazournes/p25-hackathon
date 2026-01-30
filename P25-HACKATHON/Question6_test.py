@@ -1,22 +1,34 @@
 import time
+import question_5
+import question_5_explicite
 
 
-pts = [100, 10000, 1000000]
 
-print("Début du test de performance...")
-print("-" * 40)
+print("Début du test explicite")
 
-for N in pts:
-    # On déclenche le chronomètre
-    debut = time.time()
 
-    # On simule le calcul sur N points
-    for i in range(N):
-        resultat = D(i) #on prend la fonction D de la question 5
+#On déclenche le chrono
+debut = time.time()
 
-    fin = time.time() 
+
+question_5_explicite.explicite()
+
+fin = time.time() 
     
-    temps_total = fin - debut
-    print(f"Pour {N:9} points : {temps_total:.5f} sec")
+temps_total = fin - debut
+print(f"Pour explicite : {temps_total:.5f} sec")
 
-print("-" * 40)
+print("Début du test implicite")
+
+
+#On déclenche le chrono
+debut = time.time()
+
+
+question_5.implicite()
+
+fin = time.time() 
+    
+temps_total = fin - debut
+print(f"Pour implicite : {temps_total:.5f} sec")
+

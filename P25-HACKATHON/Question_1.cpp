@@ -18,12 +18,16 @@ struct Matrix {
         delete[] data;
     }
 
+    int flatten(int i, int j) const {
+        return i * cols + j;
+    }
+
     void set_value(int r, int c, double val) {
-        data[r * cols + c] = val;
+        data[flatten(r, c)] = val;
     }
 
     double get_value(int r, int c) const {
-        return data[r * cols + c];
+        return data[flatten(r, c)];
     }
 
     Matrix somme(const Matrix& other) {

@@ -12,7 +12,7 @@ for N in pts:
 
     # On simule le calcul sur N points
     for i in range(N):
-        resultat = D(i)
+        resultat = D(i) #on prend la fonction D de la question 5
 
     fin = time.time() 
     

@@ -90,7 +90,7 @@ int main() {
     D.print();
 
     std::cout <<"Produit de A par 3 :"<< std::endl;
-    Matrix E=A.multiplicationScalaire(3)
+    Matrix E=A.multiplicationScalaire(3);
     A.print(); 
 
     return 0;

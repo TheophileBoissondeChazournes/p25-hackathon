@@ -32,3 +32,5 @@ fin = time.time()
 temps_total = fin - debut
 print(f"Pour implicite : {temps_total:.5f} sec")
 
+#après test sur mon ordinateur, on trouve : Pour explicite : 7.91799 sec et Pour implicite : 10.30314 sec
+

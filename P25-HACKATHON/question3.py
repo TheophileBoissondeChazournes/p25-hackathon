@@ -49,12 +49,3 @@ b = np.array([4., 9.])
 x = grad_conj(A, b)
 print(x)   # attendu : [2, 3]
 
-dt = 0.001
-#N = K.shape[0]
-
-#A = np.eye(N) + dt * K
-
-#T = T0.copy()
-
-#for n in range(Nt):
- #   T = grad_conj(A, T)

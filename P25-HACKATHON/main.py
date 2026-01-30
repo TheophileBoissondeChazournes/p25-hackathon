@@ -10,7 +10,7 @@ t_final = 0.1
 
 dx = L/(Nx-1)
 dy = L/(Ny-1)
-dt = 0.25 * min(dx*dx, dy*dy)
+dt = 0.25 * min(dx*dx, dy*dy) #vérifie la condition de stabilité
 Nt = int(t_final/dt)
 
 # On initialise
@@ -53,3 +53,51 @@ for n in range(Nt+1):
 
 f_all.close()
 print("Fichier results.txt créé avec toute la grille.")
+
+#On fait l affichage 
+
+
+# choix du x
+x_choice = 0.8 
+
+
+# On reprend notre fichier
+data = np.loadtxt("results.txt", comments="#")
+
+# On définit nos vecteurs
+t_vals = np.unique(data[:,0])
+y_vals = np.unique(data[:,4])
+
+# On adapte x pour trouver le plus proche
+x_vals = np.unique(data[:,3])
+ix = np.argmin(np.abs(x_vals - x_choice))
+x_nearest = x_vals[ix]
+print(f"x choisi = {x_choice}, x utilisé = {x_nearest}")
+
+
+#On construit notre matrice T(y,t)
+Tmat = np.zeros((len(t_vals), len(y_vals)))
+
+for n, t in enumerate(t_vals):
+    for j, y in enumerate(y_vals):
+        mask = (data[:,0]==t) & (data[:,3]==x_nearest) & (data[:,4]==y)
+        Tmat[n,j] = data[mask,5][0]
+
+#On affiche le résultat
+plt.figure(figsize=(6,5))
+plt.imshow(Tmat, aspect='auto', extent=[y_vals[0], y_vals[-1], t_vals[-1], t_vals[0]])
+plt.colorbar(label="T")
+plt.xlabel("y")
+plt.ylabel("t")
+plt.title(f"T(y,t) pour x = {x_nearest:.3f}")
+plt.show()
+
+#on affiche T en fonction de t pour y milieu de la ligne
+y_mid_idx = len(y_vals)//2
+plt.figure()
+plt.plot(t_vals, Tmat[:, y_mid_idx], marker='o')
+plt.xlabel("t")
+plt.ylabel("T")
+plt.title(f"T(t) en x={x_nearest:.3f}, y≈{y_vals[y_mid_idx]:.3f}")
+plt.grid(True)
+plt.show()
